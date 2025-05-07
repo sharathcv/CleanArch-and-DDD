@@ -11,6 +11,5 @@ namespace SchoolPortal.Domain.Entities
 
         public string Name { get; private set; }
         public bool IsActive { get; private set; } = true;
-
     }
 }

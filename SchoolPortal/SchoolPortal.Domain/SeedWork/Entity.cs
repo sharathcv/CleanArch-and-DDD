@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SchoolPortal.Domain.SeedWork
+﻿namespace SchoolPortal.Domain.SeedWork
 {
     public class Entity
     {

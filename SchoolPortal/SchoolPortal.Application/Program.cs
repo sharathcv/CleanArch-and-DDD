@@ -1,3 +1,7 @@
+using SchoolPortal.Application.CQRS.Queries;
+using SchoolPortal.Domain.SeedWork;
+using SchoolPortal.Infrastructure.Repository;
+using System.Reflection;
 
 namespace SchoolPortal.Application
 {
@@ -12,6 +16,13 @@ namespace SchoolPortal.Application
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
+
+            // Inject the generic repository as scoped
+            builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            builder.Services.AddScoped<DepartmentQuery>();
+            builder.Services.AddMediatR(m => m.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
+            // Add db context injection here
+            // 
 
             var app = builder.Build();
 

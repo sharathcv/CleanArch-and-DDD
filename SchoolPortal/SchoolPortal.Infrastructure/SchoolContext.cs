@@ -26,6 +26,8 @@ namespace SchoolPortal.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Separate configuration file will be there for each entity which we will pick up from assembly
+            // refer to folder "EntityConfigurations"
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(modelBuilder);
         }

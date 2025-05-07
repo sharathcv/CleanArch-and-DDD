@@ -9,6 +9,7 @@ namespace SchoolPortal.Domain.Entities.StudentAggregate
             StudentId = studentId;
             CourseId = courseId;
         }
+
         public int StudentId { get; private set; }
         public int CourseId { get; private set; }
     }

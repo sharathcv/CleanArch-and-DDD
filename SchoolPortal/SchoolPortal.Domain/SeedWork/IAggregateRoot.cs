@@ -1,6 +1,6 @@
 ﻿namespace SchoolPortal.Domain.SeedWork;
 
-// This is just a marker interface
+// Marker interface
 public interface IAggregateRoot
 {
 }

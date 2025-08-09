@@ -1,7 +1,6 @@
-﻿namespace SchoolPortal.Domain.SeedWork
+﻿namespace SchoolPortal.Domain.SeedWork;
+
+public interface IUnitOfWork: IDisposable
 {
-    public interface IUnitOfWork: IDisposable
-    {
-        Task<bool> SaveAsync(CancellationToken cancellationToken = default);
-    }
+    Task<bool> SaveAsync(CancellationToken cancellationToken = default);
 }

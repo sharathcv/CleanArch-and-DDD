@@ -1,8 +1,7 @@
-﻿namespace SchoolPortal.Domain.SeedWork
+﻿namespace SchoolPortal.Domain.SeedWork;
+
+public class Entity
 {
-    public class Entity
-    {
-        public int Id { get; private set; }
-        public DateTime DateCreated { get; private set; } = DateTime.UtcNow;
-    }
+    public int Id { get; private set; }
+    public DateTime DateCreated { get; private set; } = DateTime.UtcNow;
 }

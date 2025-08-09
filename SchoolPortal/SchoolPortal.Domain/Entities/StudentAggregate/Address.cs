@@ -1,18 +1,19 @@
-﻿namespace SchoolPortal.Domain.Entities.StudentAggregate
-{
-    public class Address
-    {
-        public Address(string state, string country, string street, string city)
-        {
-            State = state;
-            Country = country;
-            Street = street;
-            City = city;
-        }
+﻿using SchoolPortal.Domain.SeedWork;
 
-        public string City { get; private set; }
-        public string Street { get; private set; }
-        public string Country { get; private set; }
-        public string State { get; private set; }
+namespace SchoolPortal.Domain.Entities.StudentAggregate;
+
+public class Address: Entity
+{
+    public Address(string state, string country, string street, string city)
+    {
+        State = state;
+        Country = country;
+        Street = street;
+        City = city;
     }
+
+    public string City { get; private set; }
+    public string Street { get; private set; }
+    public string Country { get; private set; }
+    public string State { get; private set; }
 }

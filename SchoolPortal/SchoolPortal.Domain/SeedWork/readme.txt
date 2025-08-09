@@ -1,0 +1,1 @@
+SeedWork folder can also be called SharedKernel.

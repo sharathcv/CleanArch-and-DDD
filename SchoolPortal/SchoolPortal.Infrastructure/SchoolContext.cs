@@ -17,11 +17,10 @@ public class SchoolContext : DbContext, IUnitOfWork
     }
 
     // DbSets for each entity in the domain model   
-    public DbSet<Student> Student { get; set; }
-    public DbSet<Course> Course { get; set; }
-    public DbSet<StudentCourse> StudentCourse { get; set; }
-    public DbSet<Department> Department { get; set; }
-    public DbSet<Todo> Todo { get; set; }
+    public DbSet<Student> Students { get; set; }
+    public DbSet<Course> Courses { get; set; }
+    public DbSet<Department> Departments { get; set; }
+    public DbSet<Todo> Todos { get; set; }
 
     public async Task<bool> SaveAsync(CancellationToken cancellationToken = default)
     {

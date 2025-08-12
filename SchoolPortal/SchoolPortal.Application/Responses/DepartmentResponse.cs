@@ -1,7 +1,6 @@
-﻿namespace SchoolPortal.Application.Responses
+﻿namespace SchoolPortal.Application.Responses;
+
+public record DepartmentResponse
 {
-    public record DepartmentResponse
-    {
-        public string Name { get; set; }
-    }
+    public string Name { get; set; } = default!;
 }

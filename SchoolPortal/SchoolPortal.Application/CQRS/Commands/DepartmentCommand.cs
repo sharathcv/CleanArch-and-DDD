@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using SchoolPortal.Application.CQRS.Commands;
 using SchoolPortal.Domain.Entities;
 using SchoolPortal.Domain.SeedWork;
 

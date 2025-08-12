@@ -4,12 +4,13 @@ using SchoolPortal.Domain.SeedWork;
 using SchoolPortal.Infrastructure;
 using SchoolPortal.Infrastructure.Repository;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace SchoolPortal.Application;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,7 @@ public class Program
         builder.Services.AddControllers();
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();
+        builder.Services.AddSwaggerGen();
 
         // Inject the generic repository as scoped
         builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
@@ -28,6 +30,8 @@ public class Program
         });
 
         var app = builder.Build();
+
+        await SeedAsync(app);
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
@@ -43,5 +47,15 @@ public class Program
         app.MapControllers();
 
         app.Run();
+    }
+
+    public static async Task SeedAsync(WebApplication host)
+    {
+        using (var scope = host.Services.CreateScope())
+        {
+            var services = scope.ServiceProvider;
+            var context = services.GetRequiredService<SchoolContext>();
+            await SchoolContextSeed.SeedAsync(context);
+        }
     }
 }

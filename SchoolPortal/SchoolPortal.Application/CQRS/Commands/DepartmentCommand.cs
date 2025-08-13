@@ -4,28 +4,23 @@ using SchoolPortal.Domain.SeedWork;
 
 namespace SchoolPortal.Application.CQRS.Commands;
 
-public class DepartmentCommand: IRequest
+public record DepartmentCommand: IRequest
 {
-    public string Name { get; }
-
-    public DepartmentCommand(string name)
-    {
-        Name = name;
-    }
+    public string Name { get; set; } = default!;
 }
 
 public class DepartmentCommandHandler: IRequestHandler<DepartmentCommand>
 {
-    private readonly IGenericRepository<Department> _departmentRepo;
+    private readonly IGenericRepository<Department> _departmentRepository;
 
-    public DepartmentCommandHandler(IGenericRepository<Department> departmentRepo)
+    public DepartmentCommandHandler(IGenericRepository<Department> departmentRepository)
     {
-        _departmentRepo = departmentRepo;
+        _departmentRepository = departmentRepository;
     }
 
     public async Task Handle(DepartmentCommand command, CancellationToken cancellationToken)
     {
-        await _departmentRepo.AddAsync(new Department("Finance"));
-        await _departmentRepo.UnitOfWork.SaveAsync();
+        await _departmentRepository.AddAsync(new Department(command.Name));
+        await _departmentRepository.UnitOfWork.SaveAsync();
     }
 }

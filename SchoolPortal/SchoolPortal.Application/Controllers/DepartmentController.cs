@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using SchoolPortal.Application.CQRS.Queries;
 
 namespace SchoolPortal.Application.Controllers;
@@ -8,10 +9,16 @@ namespace SchoolPortal.Application.Controllers;
 [ApiController]
 public class DepartmentController : ControllerBase
 {
-    DepartmentQuery _departmentQuery;
+    readonly ILogger<DepartmentController> _logger;
+    readonly DepartmentQuery _departmentQuery;
 
-    public DepartmentController(DepartmentQuery departmentQuery)
+    public DepartmentController
+    (
+        DepartmentQuery departmentQuery, 
+        ILogger<DepartmentController> logger
+    )
     {
+        _logger = logger;
         _departmentQuery = departmentQuery;
     }
 

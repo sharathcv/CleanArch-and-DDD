@@ -4,7 +4,7 @@ using SchoolPortal.Domain.SeedWork;
 
 namespace SchoolPortal.Application.CQRS.Commands;
 
-public class DepartmentCommand: IRequest<Task>
+public class DepartmentCommand: IRequest
 {
     public string Name { get; }
 
@@ -14,7 +14,7 @@ public class DepartmentCommand: IRequest<Task>
     }
 }
 
-public class DepartmentCommandHandler: IRequestHandler<DepartmentCommand, Task>
+public class DepartmentCommandHandler: IRequestHandler<DepartmentCommand>
 {
     private readonly IGenericRepository<Department> _departmentRepo;
 
@@ -23,11 +23,9 @@ public class DepartmentCommandHandler: IRequestHandler<DepartmentCommand, Task>
         _departmentRepo = departmentRepo;
     }
 
-    public async Task<Task> Handle(DepartmentCommand command, CancellationToken cancellationToken)
+    public async Task Handle(DepartmentCommand command, CancellationToken cancellationToken)
     {
         await _departmentRepo.AddAsync(new Department("Finance"));
         await _departmentRepo.UnitOfWork.SaveAsync();
-
-        return Task.CompletedTask;
     }
 }

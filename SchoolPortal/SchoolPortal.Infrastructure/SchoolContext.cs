@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SchoolPortal.Domain.Entities;
 using SchoolPortal.Domain.Entities.StudentAggregate;
 using SchoolPortal.Domain.SeedWork;
+using SchoolPortal.Infrastructure.Extensions;
 using System.Reflection;
 
 namespace SchoolPortal.Infrastructure;
@@ -27,13 +28,15 @@ public class SchoolContext : DbContext, IUnitOfWork
         await base.SaveChangesAsync(cancellationToken);
 
         // After a successful save, dispatch domain events
-        await _mediator.Publish(this);
+        await _mediator.DispatchDomainEventsAsync(this);
 
         return true;
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Entity>(e => e.Ignore(x => x.DomainEvents));
+
         // Separate configuration file will be there for each entity which will be picked up from assembly
         // (refer to folder "EntityConfigurations")
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

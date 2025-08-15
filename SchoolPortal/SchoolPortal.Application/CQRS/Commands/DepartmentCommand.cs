@@ -20,7 +20,10 @@ public class DepartmentCommandHandler: IRequestHandler<DepartmentCommand>
 
     public async Task Handle(DepartmentCommand command, CancellationToken cancellationToken)
     {
-        await _departmentRepository.AddAsync(new Department(command.Name));
+        var newDepartment = new Department(command.Name);
+        newDepartment = await _departmentRepository.AddAsync(newDepartment);
+
+        newDepartment.EnqueuAddDepartmentEvent();
         await _departmentRepository.UnitOfWork.SaveAsync();
     }
 }

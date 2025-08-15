@@ -35,7 +35,11 @@ public class SchoolContext : DbContext, IUnitOfWork
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Entity>(e => e.Ignore(x => x.DomainEvents));
+        // TODO: Move below ignore calls to Entity Configuration files for each of the entity
+        modelBuilder.Entity<Student>(e => e.Ignore(x => x.DomainEvents));
+        modelBuilder.Entity<Department>(e => e.Ignore(x => x.DomainEvents));
+        modelBuilder.Entity<Todo>(e => e.Ignore(x => x.DomainEvents));
+        modelBuilder.Entity<Course>(e => e.Ignore(x => x.DomainEvents));
 
         // Separate configuration file will be there for each entity which will be picked up from assembly
         // (refer to folder "EntityConfigurations")

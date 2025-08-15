@@ -10,7 +10,8 @@ public static class MediatorExtension
         // Fetch all entities that have domain events
         var entitiesWithEvents = context.ChangeTracker
                                         .Entries<Entity>()
-                                        .Where(e => e.Entity.DomainEvents != null && e.Entity.DomainEvents.Any());
+                                        .Where(e => e.Entity.DomainEvents != null 
+                                                    && e.Entity.DomainEvents.Any());
 
         // Get the list of domain events
         var domainEvents = entitiesWithEvents.SelectMany(e => e.Entity.DomainEvents)

@@ -1,20 +1,26 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SchoolPortal.Domain.SeedWork;
+using SchoolPortal.Domain.Specifications;
 using System.Linq.Expressions;
 
 namespace SchoolPortal.Infrastructure.Repository;
 
 public class GenericRepository<T>: IGenericRepository<T> where T: Entity, IAggregateRoot
 {
-    protected readonly SchoolContext _context;
     internal DbSet<T> _set;
-
+    protected readonly SchoolContext _context;
     public IUnitOfWork UnitOfWork => _context;
 
     public GenericRepository(SchoolContext context)
     {
         _context = context;
         _set = _context.Set<T>();
+    }
+
+    public IEnumerable<T> Specify(ISpecification<T> spec)
+    {
+        var includes = spec.Includes.Aggregate(_context.Set<T>().AsQueryable(), (current, include) => current.Include(include));
+        return includes.Where(spec.Critera).AsEnumerable();
     }
 
     public async Task<T> AddAsync(T entity)

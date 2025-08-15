@@ -1,10 +1,11 @@
-﻿using System.Linq.Expressions;
+﻿using SchoolPortal.Domain.Specifications;
+using System.Linq.Expressions;
 
 namespace SchoolPortal.Domain.SeedWork;
 
 public interface IGenericRepository<T> where T: Entity, IAggregateRoot
 {
-    //IEnumerable<T> Specify(ISpecification<T> spec);
+    IEnumerable<T> Specify(ISpecification<T> spec);
     //IEnumerable<T> Specify2(ISpecification<T> spec);
     IUnitOfWork UnitOfWork { get; }
     Task<T> AddAsync(T entity);

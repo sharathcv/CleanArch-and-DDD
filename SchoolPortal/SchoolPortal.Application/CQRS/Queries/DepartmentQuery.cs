@@ -1,6 +1,7 @@
 ﻿using SchoolPortal.Application.Responses;
 using SchoolPortal.Domain.Entities;
 using SchoolPortal.Domain.SeedWork;
+using SchoolPortal.Domain.Specifications;
 
 namespace SchoolPortal.Application.CQRS.Queries;
 
@@ -15,7 +16,11 @@ public class DepartmentQuery
 
     public async Task<IEnumerable<DepartmentResponse>> GetDepartments()
     {
-        var departments = await _departmentRepo.GetAllAsync();
-        return departments.Select(d => new DepartmentResponse { Name = d.Name });
+        // Base specification can also be used directly
+        //var activeDepartments = _departmentRepo.Specify(new BaseSpecification<Department>(d => d.IsActive));
+
+        // By using specific implementation
+        var activeDepartments = _departmentRepo.Specify(new GetActiveDepartments());
+        return activeDepartments.Select(d => new DepartmentResponse { Name = d.Name });
     }
 }

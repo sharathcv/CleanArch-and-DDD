@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35825.156 d17.13
+VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolPortal", "SchoolPortal\SchoolPortal.csproj", "{0F935EBF-D582-4C56-905C-28C1F59AD173}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolPortal.Domain", "SchoolPortal.Domain\SchoolPortal.Domain.csproj", "{40025783-4D18-408B-A5FA-30ED6032DD2F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolPortal.Infrastructure", "SchoolPortal.Infrastructure\SchoolPortal.Infrastructure.csproj", "{65377802-A07E-4227-A45A-C3CF11710E6A}"
@@ -17,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0F935EBF-D582-4C56-905C-28C1F59AD173}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0F935EBF-D582-4C56-905C-28C1F59AD173}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0F935EBF-D582-4C56-905C-28C1F59AD173}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0F935EBF-D582-4C56-905C-28C1F59AD173}.Release|Any CPU.Build.0 = Release|Any CPU
 		{40025783-4D18-408B-A5FA-30ED6032DD2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{40025783-4D18-408B-A5FA-30ED6032DD2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40025783-4D18-408B-A5FA-30ED6032DD2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
